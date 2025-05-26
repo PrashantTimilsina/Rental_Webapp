@@ -1,0 +1,19 @@
+@import "tailwindcss";
+html {
+  font-size: 62.5%;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 56.25%; /* 1rem = 9px */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 50%; /* 1rem = 8px */
+  }
+}
+.btn {
+  @apply bg-sky-800   px-9 rounded-sm py-3 text-white cursor-pointer;
+}
