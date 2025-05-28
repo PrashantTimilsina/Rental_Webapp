@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router";
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [sticky, setSticky] = useState(false);
   function toggleNav() {
     setIsOpen((isOpen) => !isOpen);
   }
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const navItems = (
     <>
       <Link to="/">
@@ -28,7 +42,11 @@ function Navbar() {
   );
   return (
     <>
-      <div className="fixed flex justify-between items-center text-2xl  w-full top-0  h-24 p-3 bg-[#BFC3DD] font-semibold z-50">
+      <div
+        className={`fixed flex justify-between items-center text-2xl  w-full top-0  h-24 p-3  font-semibold z-50 ${
+          sticky ? "bg-cyan-100" : "bg-[#BFC3DD]"
+        }`}
+      >
         <div className="sm:w-[9%] w-1/2">
           <img
             src="https://t3.ftcdn.net/jpg/01/79/49/56/360_F_179495677_LMiOo97wzUMwkOcVaow1sgf39iYyMTTX.jpg"

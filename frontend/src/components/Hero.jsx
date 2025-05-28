@@ -24,6 +24,7 @@ function FrontPage() {
         alt="House"
         className="sm:w-full sm:h-full object-contain opacity-90 sm:object-cover w-auto h-auto"
       />
+
       <div className="absolute sm:inset-0 flex items-center justify-center px-4 flex-col mt-2">
         <h1 className=" text-3xl sm:text-4xl md:text-5xl  text-center font-bold sm:text-white text-blue-200 bg-indigo-950 sm:bg-transparent sm:block hidden">
           <Typewriter
