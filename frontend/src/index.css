@@ -17,3 +17,6 @@ html {
 .btn {
   @apply bg-sky-800   px-9 rounded-sm py-3 text-white cursor-pointer;
 }
+body {
+  background-color: azure;
+}

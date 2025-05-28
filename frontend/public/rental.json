@@ -1,0 +1,182 @@
+[
+  {
+    "id": "1",
+    "title": "Cozy Cottage",
+    "description": "Small cottage in the countryside.",
+    "imageURL": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      "https://images.unsplash.com/photo-1472220625704-91e1462799b2",
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"
+    ],
+    "city": "Portland",
+    "address": "123 Main Street",
+    "price": 1500,
+    "bedrooms": 2,
+    "available": true,
+    "rating": 4.2,
+    "ownerName": "Alice Johnson"
+  },
+  {
+    "id": "2",
+    "title": "Modern Apartment",
+    "description": "Apartment in downtown with modern amenities.",
+    "imageURL": "https://images.unsplash.com/photo-1472220625704-91e1462799b2",
+    "images": [
+      "https://images.unsplash.com/photo-1472220625704-91e1462799b2",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156",
+      "https://images.unsplash.com/photo-1486308510493-cb32d602f4a8"
+    ],
+    "city": "New York",
+    "address": "456 Park Avenue",
+    "price": 3500,
+    "bedrooms": 3,
+    "available": false,
+    "rating": 4.8,
+    "ownerName": "Bob Smith"
+  },
+  {
+    "id": "3",
+    "title": "Luxury Villa",
+    "description": "Spacious villa with a private pool.",
+    "imageURL": "https://images.unsplash.com/photo-1494526585095-c41746248156",
+    "images": [
+      "https://images.unsplash.com/photo-1494526585095-c41746248156",
+      "https://images.unsplash.com/photo-1486308510493-cb32d602f4a8",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+    ],
+    "city": "Miami",
+    "address": "789 Ocean Drive",
+    "price": 8000,
+    "bedrooms": 5,
+    "available": true,
+    "rating": 4.9,
+    "ownerName": "Carol Danvers"
+  },
+  {
+    "id": "4",
+    "title": "Downtown Studio",
+    "description": "Compact studio perfect for singles.",
+    "imageURL": "https://images.unsplash.com/photo-1486308510493-cb32d602f4a8",
+    "images": [
+      "https://images.unsplash.com/photo-1486308510493-cb32d602f4a8",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156"
+    ],
+    "city": "San Francisco",
+    "address": "321 Market Street",
+    "price": 2000,
+    "bedrooms": 1,
+    "available": true,
+    "rating": 4.0,
+    "ownerName": "David Banner"
+  },
+  {
+    "id": "5",
+    "title": "Beachfront Condo",
+    "description": "Condo with beautiful ocean views.",
+    "imageURL": "https://images.unsplash.com/photo-1572120360610-d971b9b0f9f3",
+    "images": [
+      "https://images.unsplash.com/photo-1572120360610-d971b9b0f9f3",
+      "https://images.unsplash.com/photo-1501183638714-3c9e1d76d51c",
+      "https://images.unsplash.com/photo-1472220625704-91e1462799b2"
+    ],
+    "city": "Los Angeles",
+    "address": "654 Sunset Blvd",
+    "price": 4000,
+    "bedrooms": 3,
+    "available": true,
+    "rating": 4.7,
+    "ownerName": "Eve Adams"
+  },
+  {
+    "id": "6",
+    "title": "Suburban House",
+    "description": "Family home in quiet suburban neighborhood.",
+    "imageURL": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"
+    ],
+    "city": "Atlanta",
+    "address": "753 Elm Street",
+    "price": 2800,
+    "bedrooms": 3,
+    "available": true,
+    "rating": 4.3,
+    "ownerName": "Liam Neeson"
+  },
+  {
+    "id": "7",
+    "title": "Modern Duplex",
+    "description": "Two-floor duplex with modern design.",
+    "imageURL": "https://images.unsplash.com/photo-1472220625704-91e1462799b2",
+    "images": [
+      "https://images.unsplash.com/photo-1472220625704-91e1462799b2",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0JOh4IkZ4Xahi3wg7BEA6XhHEQqhnmymqwg&s"
+    ],
+    "city": "Dallas",
+    "address": "258 Maple Drive",
+    "price": 3100,
+    "bedrooms": 3,
+    "available": false,
+    "rating": 4.6,
+    "ownerName": "Maggie Smith"
+  },
+  {
+    "id": "8",
+    "title": "Historic Home",
+    "description": "Beautiful historic home with original details.",
+    "imageURL": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+    "images": [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+      "https://images.unsplash.com/photo-1501183638714-3c9e1d76d51c",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6"
+    ],
+    "city": "Philadelphia",
+    "address": "963 Walnut Street",
+    "price": 2900,
+    "bedrooms": 3,
+    "available": true,
+    "rating": 4.4,
+    "ownerName": "Nancy Drew"
+  },
+  {
+    "id": "9",
+    "title": "Luxury Apartment",
+    "description": "High-end apartment with city skyline views.",
+    "imageURL": "https://images.unsplash.com/photo-1494526585095-c41746248156",
+    "images": [
+      "https://images.unsplash.com/photo-1494526585095-c41746248156",
+      "https://images.unsplash.com/photo-1486308510493-cb32d602f4a8",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+    ],
+    "city": "Austin",
+    "address": "741 Congress Ave",
+    "price": 4700,
+    "bedrooms": 2,
+    "available": true,
+    "rating": 4.9,
+    "ownerName": "Oliver Queen"
+  },
+  {
+    "id": "10",
+    "title": "Compact Studio",
+    "description": "Affordable studio apartment in downtown area.",
+    "imageURL": "https://images.unsplash.com/photo-1572120360610-d971b9b0f9f3",
+    "images": [
+      "https://images.unsplash.com/photo-1572120360610-d971b9b0f9f3",
+      "https://thumbs.dreamstime.com/z/beautiful-country-house-25442574.jpg",
+      "https://images.unsplash.com/photo-1472220625704-91e1462799b2"
+    ],
+    "city": "Detroit",
+    "address": "852 Woodward Ave",
+    "price": 1700,
+    "bedrooms": 1,
+    "available": false,
+    "rating": 4.0,
+    "ownerName": "Pam Beesly"
+  }
+]
