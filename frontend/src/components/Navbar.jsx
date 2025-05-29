@@ -43,7 +43,7 @@ function Navbar() {
   return (
     <>
       <div
-        className={`fixed flex justify-between items-center text-2xl  w-full top-0  h-24 p-3  font-semibold z-50 ${
+        className={`fixed flex justify-between items-center text-2xl  w-full top-0  sm:h-24 h-16 p-3  font-semibold z-50 ${
           sticky ? "bg-cyan-100" : "bg-[#BFC3DD]"
         }`}
       >

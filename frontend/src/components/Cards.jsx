@@ -1,27 +1,32 @@
-import rental from "./../../public/rental.json";
-function Cards() {
+import { useNavigate } from "react-router";
+// import rental from "./../../public/rental.json";
+function Cards({ data }) {
+  const navigate = useNavigate();
   return (
     <>
-      <div className="text-3xl mt-7 p-3">
-        <div>
+      <div className="text-2xl  mt-3 p-3 cursor-pointer">
+        {/* <div>
           <h1 className="font-semibold ml-5">Explore Rental Homes</h1>
           <hr className="mt-4" />
-        </div>
-        <div className="mt-12 space-y-10">
-          {rental.map((data, i) => (
+        </div> */}
+        <div className="mt-12 space-y-10 grid sm:grid-row-1 sm:grid-cols-1 grid-cols-2 gap-7">
+          {data.map((data, i) => (
             <div
               key={i}
-              className="grid grid-cols-2 grid-rows-1  border-black p-4 border-2 space-x-7"
+              className="grid sm:grid-cols-2 grid-rows-1  border-black p-4 border-2 space-x-7 sm:w-auto "
+              onClick={() => navigate(`/description/${data?._id}`)}
             >
               <div>
                 <img
                   src={data.imageURL}
                   alt="House image"
-                  className="h-96 object-cover md:w-[550px] w-auto"
+                  className="sm:h-96 object-cover md:w-[550px] sm:w-auto  w-full "
                 />
               </div>
               <div className="flex flex-col gap-7">
-                <h1 className="font-semibold text-4xl">{data?.title}</h1>
+                <h1 className="font-semibold  sm:mt-0 mt-4 text-3xl">
+                  {data?.title}
+                </h1>
                 <h1>
                   <span className="font-semibold">Address:</span>{" "}
                   {data?.address}, {data?.city}

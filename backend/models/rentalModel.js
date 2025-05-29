@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const rentalSchema = new mongoose.Schema({
   title: String,
@@ -16,3 +16,5 @@ const rentalSchema = new mongoose.Schema({
   rating: Number,
   ownerName: String,
 });
+const Rental = new mongoose.model("Rental", rentalSchema);
+module.exports = Rental;

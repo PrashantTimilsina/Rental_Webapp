@@ -6,6 +6,7 @@ import { UserProvider } from "./context/Context";
 import { ToastContainer } from "react-toastify";
 import Layout from "./Layout";
 import Home from "./Home";
+import Description from "./components/Description";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/description/:id" element={<Description />} />
           </Route>
         </Routes>
       </UserProvider>
