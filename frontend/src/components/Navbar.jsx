@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useData } from "../context/Context";
+import axios from "axios";
+import SuccessMsg from "../utils/SuccessMsg";
+import ErrorMsg from "../utils/ErrorMsg";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
+
+  const navigate = useNavigate();
+  const { setIsLoggedIn, isLoggedIn } = useData();
   function toggleNav() {
     setIsOpen((isOpen) => !isOpen);
   }
@@ -21,18 +29,49 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    async function checkAuth() {
+      const res = await axios.get(`${baseUrl}/user/checkAuth`, {
+        withCredentials: true,
+      });
+      const data = res?.data;
+      if (data?.cookies) {
+        navigate("/");
+        setIsLoggedIn(true);
+      }
+      console.log(data);
+    }
+    checkAuth();
+  }, []);
+  async function handleLogOut() {
+    try {
+      const res = await axios.get(`${baseUrl}/user/logout`, {
+        withCredentials: true,
+      });
+      SuccessMsg("Logout successful");
+      setIsLoggedIn(false);
+    } catch (err) {
+      ErrorMsg("Server Error! Please try again");
+    }
+  }
+  function handleCart() {
+    if (!isLoggedIn) {
+      ErrorMsg("Please login to access this section");
+    }
+  }
   const navItems = (
     <>
       <Link to="/">
         <h2>Home</h2>
       </Link>
 
-      <Link to="/">
-        <h2>Favorites</h2>
+      <Link to={isLoggedIn && "/cart"} onClick={handleCart}>
+        <h2> Wishlist</h2>
       </Link>
 
-      <Link to="/login">
-        <h2>Login</h2>
+      <Link to={isLoggedIn ? "" : "/login"}>
+        {isLoggedIn ? <h2 onClick={handleLogOut}>Logout</h2> : <h2>Login</h2>}
       </Link>
 
       <Link to="/register">

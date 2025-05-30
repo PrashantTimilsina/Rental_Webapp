@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -7,6 +7,8 @@ import { ToastContainer } from "react-toastify";
 import Layout from "./Layout";
 import Home from "./Home";
 import Description from "./components/Description";
+
+import Cart from "./components/Cart";
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/description/:id" element={<Description />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
         </Routes>
       </UserProvider>

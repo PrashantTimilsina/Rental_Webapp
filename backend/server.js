@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const userRouter = require("./routes/userRouter");
 const rentalRouter = require("./routes/rentalRoutes");
+const wishRouter = require("./routes/wishRoutes");
 const cookieParser = require("cookie-parser");
 const app = express();
 dotenv.config();
@@ -19,6 +20,7 @@ const DB = process.env.CONNECTION;
 const PORT = process.env.PORT;
 app.use("/user", userRouter);
 app.use("/rental", rentalRouter);
+app.use("/wishlist", wishRouter);
 mongoose.connect(DB).then(() => {
   console.log("DB connected");
 });

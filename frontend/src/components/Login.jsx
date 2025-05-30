@@ -6,7 +6,7 @@ import SuccessMsg from "../utils/SuccessMsg";
 import ErrorMsg from "../utils/ErrorMsg";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 function Login() {
-  const { setIsLoggedIn } = useData();
+  const { setIsLoggedIn, btnText, setBtnText } = useData();
   const navigate = useNavigate();
   const {
     register,
@@ -15,14 +15,16 @@ function Login() {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+      setBtnText(true);
       const res = await axios.post(`${baseUrl}/user/login`, data, {
         withCredentials: true,
       });
       const detail = res?.data;
       if (detail?.token) {
-        navigate("/home");
+        navigate("/");
         SuccessMsg(detail?.message);
         setIsLoggedIn(true);
+        setBtnText(false);
       }
       console.log(detail);
     } catch (error) {
@@ -85,7 +87,7 @@ function Login() {
               type="submit"
               className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white text-xl font-semibold rounded-lg transition duration-300 cursor-pointer"
             >
-              Login
+              {btnText ? "Loading..." : "Login"}
             </button>
           </form>
 

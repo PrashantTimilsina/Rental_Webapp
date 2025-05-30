@@ -16,5 +16,5 @@ const rentalSchema = new mongoose.Schema({
   rating: Number,
   ownerName: String,
 });
-const Rental = new mongoose.model("Rental", rentalSchema);
+const Rental = mongoose.model("Rental", rentalSchema);
 module.exports = Rental;

@@ -10,6 +10,15 @@ const setCookie = (res, token) => {
   return res.cookie("token", token, {
     httpOnly: true,
     expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  });
+};
+const clearCookie = (res) => {
+  return res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
   });
 };
 exports.signUp = async (req, res, next) => {
@@ -78,6 +87,23 @@ exports.login = async (req, res, next) => {
     });
   }
 };
+exports.ensureAuthenticated = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({
+      message: "Unauthorized, JWT token is required",
+    });
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = { _id: decoded.id };
+    next();
+  } catch (error) {
+    res.status(400).json({
+      message: "Error occured in verification of token",
+    });
+  }
+};
 exports.checkAuth = async (req, res, next) => {
   const cookies = req.cookies.token;
   if (cookies) {
@@ -90,5 +116,15 @@ exports.checkAuth = async (req, res, next) => {
       status: "fail",
       message: "Not logged In",
     });
+  }
+};
+exports.logout = async (req, res, next) => {
+  try {
+    clearCookie(res);
+    res.status(200).json({
+      message: "Logout successfully",
+    });
+  } catch (error) {
+    res.status(400).json({ message: "Server error" });
   }
 };
