@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { useData } from "../context/Context";
 import axios from "axios";
 import SuccessMsg from "../utils/SuccessMsg";
@@ -11,8 +11,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
 
-  const navigate = useNavigate();
-  const { setIsLoggedIn, isLoggedIn } = useData();
+  const { setIsLoggedIn, isLoggedIn, fetchProfile, profileData } = useData();
   function toggleNav() {
     setIsOpen((isOpen) => !isOpen);
   }
@@ -37,8 +36,8 @@ function Navbar() {
       });
       const data = res?.data;
       if (data?.cookies) {
-        navigate("/");
         setIsLoggedIn(true);
+        fetchProfile();
       }
       console.log(data);
     }
@@ -62,20 +61,34 @@ function Navbar() {
   }
   const navItems = (
     <>
-      <Link to="/">
+      <Link to="/" className="navbarlink">
         <h2>Home</h2>
       </Link>
 
-      <Link to={isLoggedIn && "/cart"} onClick={handleCart}>
+      <Link
+        to={isLoggedIn && "/cart"}
+        onClick={handleCart}
+        className="navbarlink"
+      >
         <h2> Wishlist</h2>
       </Link>
 
-      <Link to={isLoggedIn ? "" : "/login"}>
+      <Link to={isLoggedIn ? "" : "/login"} className="navbarlink">
         {isLoggedIn ? <h2 onClick={handleLogOut}>Logout</h2> : <h2>Login</h2>}
       </Link>
 
-      <Link to="/register">
-        <h2>Register</h2>
+      <Link to={isLoggedIn ? "/profile" : "/register"} className="navbarlink">
+        {isLoggedIn ? (
+          <div className="flex items-center gap-4">
+            <img
+              src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg?semt=ais_hybrid"
+              className="object-cover h-10 rounded-3xl"
+            />
+            <h2>{profileData?.user?.name}</h2>
+          </div>
+        ) : (
+          <h2>Register</h2>
+        )}
       </Link>
     </>
   );
@@ -89,7 +102,7 @@ function Navbar() {
         <div className="sm:w-[9%] w-1/2">
           <img
             src="https://t3.ftcdn.net/jpg/01/79/49/56/360_F_179495677_LMiOo97wzUMwkOcVaow1sgf39iYyMTTX.jpg"
-            className="object-cover h-24"
+            className="object-cover sm:h-24 h-16"
           />
         </div>
 

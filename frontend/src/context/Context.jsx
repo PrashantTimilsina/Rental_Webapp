@@ -11,6 +11,7 @@ function UserProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const [btnText, setBtnText] = useState(false);
+  const [profileData, setProfileData] = useState([]);
   async function fetchRentalData() {
     setIsLoading(true);
     const res = await axios.get(`${baseUrl}/rental`);
@@ -37,7 +38,7 @@ function UserProvider({ children }) {
       console.log(data);
       SuccessMsg(data?.message);
     } catch (error) {
-      ErrorMsg("Please log in to add to wishlist");
+      ErrorMsg(error?.response?.data?.message);
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +59,18 @@ function UserProvider({ children }) {
       setIsLoading(false);
     }
   }
-
+  async function fetchProfile() {
+    try {
+      const res = await axios.get(`${baseUrl}/user/profile`, {
+        withCredentials: true,
+      });
+      const data = res.data;
+      console.log(data);
+      setProfileData(data);
+    } catch (error) {
+      ErrorMsg("Please try again later");
+    }
+  }
   return (
     <UserContext.Provider
       value={{
@@ -78,6 +90,9 @@ function UserProvider({ children }) {
         fetchAddToCart,
         btnText,
         setBtnText,
+        fetchProfile,
+        setProfileData,
+        profileData,
       }}
     >
       {children}

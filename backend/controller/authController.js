@@ -30,6 +30,11 @@ exports.signUp = async (req, res, next) => {
         message: "Please provide the required information",
       });
     }
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        message: "Password and Confirm Password doesnot match",
+      });
+    }
     const user = await User.create({
       name,
       email,
@@ -47,7 +52,7 @@ exports.signUp = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({
       status: "fail",
-      message: "User cannot be created",
+      message: "User already exists",
       error: error.message,
     });
   }
@@ -126,5 +131,57 @@ exports.logout = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({ message: "Server error" });
+  }
+};
+exports.getMe = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(400).json({
+        message: "Cannot get information",
+      });
+    }
+    res.status(200).json({
+      status: "success",
+      user,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+exports.changePassword = async (req, res, next) => {
+  const { currentPassword, newPassword, confirmNewPassword } = req.body;
+
+  try {
+    const user = await User.findById(req.user._id).select("+password");
+
+    if (newPassword !== confirmNewPassword) {
+      return res.status(400).json({
+        message: "New password and confirm new password doesnot match",
+      });
+    }
+    const isPasswordValid = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
+    if (!isPasswordValid) {
+      return res.status(400).json({
+        message: "Current password doesnot match",
+      });
+    }
+    user.password = newPassword;
+    user.confirmPassword = confirmNewPassword;
+    await user.save();
+    res.status(200).json({
+      message: "Password changed successfully",
+      user,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Cannot change password",
+    });
   }
 };

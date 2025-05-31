@@ -17,6 +17,14 @@ html {
 .btn {
   @apply bg-sky-800   px-9 rounded-sm py-3 text-white cursor-pointer;
 }
+.navbarlink {
+  @apply hover:border-b-black hover:border-b-2 hover:pb-2;
+}
+.navbarlink.active {
+  color: #0e7490; /* example: Tailwind cyan-600 */
+  font-weight: bold;
+  text-decoration: underline;
+}
 body {
   background-color: azure;
   overflow-x: hidden;

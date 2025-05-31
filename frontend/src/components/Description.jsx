@@ -11,6 +11,9 @@ function Description() {
   useEffect(() => {
     fetchDescription(id);
   }, [id]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleAddToWishList = async () => {
     fetchAddToCart(id);

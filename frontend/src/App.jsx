@@ -9,6 +9,7 @@ import Home from "./Home";
 import Description from "./components/Description";
 
 import Cart from "./components/Cart";
+import Profile from "./components/Profile";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/description/:id" element={<Description />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
       </UserProvider>

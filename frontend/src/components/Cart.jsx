@@ -4,10 +4,12 @@ import Loader from "./Loader";
 import axios from "axios";
 import SuccessMsg from "../utils/SuccessMsg";
 import ErrorMsg from "../utils/ErrorMsg";
+import { useNavigate } from "react-router";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
 function Cart() {
   const { cart, getCart, isLoading } = useData();
+  const navigate = useNavigate();
   useEffect(() => {
     getCart();
   }, []);
@@ -45,7 +47,8 @@ function Cart() {
             {cart?.map((data, i) => (
               <div
                 key={i}
-                className="p-2 flex flex-col justify-center items-center gap-3.5  sm:text-2xl rounded-sm bg-amber-100"
+                className="p-2 flex flex-col justify-center items-center gap-3.5  sm:text-2xl rounded-sm bg-amber-100 cursor-pointer"
+                onClick={() => navigate(`/description/${data?.rental?._id}`)}
               >
                 <img src={data?.rental?.imageURL} className="" />
                 <h1>{data?.rental?.title}</h1>

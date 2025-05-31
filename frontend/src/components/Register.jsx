@@ -5,8 +5,10 @@ import { useData } from "../context/Context";
 
 import ErrorMsg from "../utils/ErrorMsg";
 import SuccessMsg from "../utils/SuccessMsg";
+import { useState } from "react";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 function Register() {
+  const [text, setText] = useState(false);
   const { setIsLoggedIn } = useData();
   const navigate = useNavigate();
   const {
@@ -16,6 +18,7 @@ function Register() {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+      setText(true);
       const res = await axios.post(`${baseUrl}/user/signup`, data, {
         withCredentials: true,
       });
@@ -23,11 +26,13 @@ function Register() {
       if (result?.token) {
         setIsLoggedIn(true);
         SuccessMsg("🎉Account created successfully!");
-        navigate("/home");
+        navigate("/");
       }
       console.log(result);
     } catch (error) {
       ErrorMsg(error?.response?.data?.message);
+    } finally {
+      setText(false);
     }
   };
   return (
@@ -118,7 +123,7 @@ function Register() {
               type="submit"
               className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white text-xl font-semibold rounded-lg transition duration-300 cursor-pointer"
             >
-              Register
+              {text ? "⏳" : "Register"}
             </button>
           </form>
 
