@@ -20,8 +20,12 @@ const userSchema = new mongoose.Schema({
   },
   confirmPassword: {
     type: String,
-    required: [true, "Please confirm your password"],
+    required: function () {
+      return this.isNew;
+    },
   },
+  resetToken: String,
+  tokenExpiry: String,
 });
 
 userSchema.pre("save", async function (next) {

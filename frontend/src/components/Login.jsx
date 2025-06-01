@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../context/Context";
 import SuccessMsg from "../utils/SuccessMsg";
 import ErrorMsg from "../utils/ErrorMsg";
+import { useEffect } from "react";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 function Login() {
   const { setIsLoggedIn, btnText, setBtnText } = useData();
@@ -13,6 +14,9 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const onSubmit = async (data) => {
     try {
       setBtnText(true);
@@ -29,6 +33,8 @@ function Login() {
       console.log(detail);
     } catch (error) {
       ErrorMsg(error?.response?.data?.message);
+    } finally {
+      setBtnText(false);
     }
   };
   return (

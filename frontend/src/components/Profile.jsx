@@ -1,25 +1,58 @@
 import { useState } from "react";
 import { useData } from "../context/Context";
-
+import { useForm } from "react-hook-form";
+import ErrorMsg from "../utils/ErrorMsg";
+import SuccessMsg from "../utils/SuccessMsg";
+import axios from "axios";
+import { useNavigate } from "react-router";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 function Profile() {
-  const { profileData } = useData();
+  const { profileData, setIsLoggedIn } = useData();
+
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
 
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
-
-  const [changePassData, setChangePassData] = useState({
-    currentPassword: "",
-    newPassword: "",
-    confirmPassword: "",
-  });
-
-  const [resetEmail, setResetEmail] = useState("");
+  const [btnText, setBtnText] = useState(false);
+  const onSubmit = async (data) => {
+    try {
+      setBtnText(true);
+      const res = await axios.post(`${baseUrl}/user/changepassword`, data, {
+        withCredentials: true,
+      });
+      const detail = res.data;
+      console.log(detail);
+      SuccessMsg(detail?.message);
+      setIsLoggedIn(false);
+      navigate("/");
+    } catch (error) {
+      ErrorMsg(error?.response?.data?.message);
+      console.log(error);
+    } finally {
+      setBtnText(false);
+    }
+  };
+  const onReset = async (data) => {
+    try {
+      const res = await axios.post(`${baseUrl}/user/forgotpassword`, data);
+      const detail = res.data;
+      SuccessMsg(detail?.message);
+    } catch (error) {
+      ErrorMsg(error?.response?.data?.message);
+    }
+  };
 
   if (!profileData) return <p className="text-center mt-40">Loading...</p>;
 
   return (
-    <div className="flex justify-center px-4 mt-40 items-center ">
-      <div className="w-full max-w-3xl bg-white p-8 rounded-xl shadow-lg ">
+    <div className="flex justify-center px-4 mt-40 items-center">
+      <div className="w-full max-w-3xl bg-white p-8 rounded-xl shadow-lg">
         <div className="flex flex-col items-center gap-4">
           <img
             src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg"
@@ -56,64 +89,61 @@ function Profile() {
           </div>
         </div>
 
-        {/* Change Password Section */}
+        {/* Change Password Section (React Hook Form should handle state externally) */}
         {showChangePassword && (
-          <form className="mt-6 space-y-4">
+          <form className="mt-6 space-y-4" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="password"
+              name="currentPassword"
               placeholder="Current Password"
               className="w-full border rounded p-2"
-              value={changePassData.currentPassword}
-              onChange={(e) =>
-                setChangePassData({
-                  ...changePassData,
-                  currentPassword: e.target.value,
-                })
-              }
+              {...register("currentPassword", { required: true })}
             />
+            {errors.currentPassword && (
+              <span className="text-red-500 ">Please fill this field</span>
+            )}
             <input
               type="password"
+              name="newPassword"
               placeholder="New Password"
               className="w-full border rounded p-2"
-              value={changePassData.newPassword}
-              onChange={(e) =>
-                setChangePassData({
-                  ...changePassData,
-                  newPassword: e.target.value,
-                })
-              }
+              {...register("newPassword", { required: true })}
             />
+            {errors.newPassword && (
+              <span className="text-red-500 ">Please fill this field</span>
+            )}
             <input
               type="password"
+              name="confirmPassword"
               placeholder="Confirm New Password"
               className="w-full border rounded p-2"
-              value={changePassData.confirmPassword}
-              onChange={(e) =>
-                setChangePassData({
-                  ...changePassData,
-                  confirmPassword: e.target.value,
-                })
-              }
+              {...register("confirmNewPassword", { required: true })}
             />
+            {errors.confirmNewPassword && (
+              <span className="text-red-500 ">Please fill this field</span>
+            )}
             <button
               type="submit"
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded cursor-pointer"
             >
-              Submit Change
+              {btnText ? "Loading..." : "Submit Change"}
             </button>
           </form>
         )}
 
-        {/* Reset Password Section */}
+        {/* Reset Password Section (React Hook Form should handle state externally) */}
         {showResetPassword && (
-          <form className="mt-6 space-y-4">
+          <form className="mt-6 space-y-4" onSubmit={handleSubmit(onReset)}>
             <input
               type="email"
+              name="resetEmail"
               placeholder="Enter your email"
               className="w-full border rounded p-2"
-              value={resetEmail}
-              onChange={(e) => setResetEmail(e.target.value)}
+              {...register("email", { required: true })}
             />
+            {errors.email && (
+              <span className="text-red-500 ">Please fill this field</span>
+            )}
             <button
               type="submit"
               className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded cursor-pointer"

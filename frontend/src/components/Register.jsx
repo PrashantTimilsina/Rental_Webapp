@@ -6,6 +6,7 @@ import { useData } from "../context/Context";
 import ErrorMsg from "../utils/ErrorMsg";
 import SuccessMsg from "../utils/SuccessMsg";
 import { useState } from "react";
+import { useEffect } from "react";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 function Register() {
   const [text, setText] = useState(false);
@@ -16,6 +17,9 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const onSubmit = async (data) => {
     try {
       setText(true);
