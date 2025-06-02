@@ -2,6 +2,7 @@ import { Outlet, Navigate } from "react-router-dom";
 import { useData } from "../context/Context";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import AdminChatBox from "../components/AdminChatBox";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 const ProtectedRoutes = () => {
   const { isLoggedIn, setIsLoggedIn } = useData();

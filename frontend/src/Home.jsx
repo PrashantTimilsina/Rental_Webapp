@@ -11,7 +11,7 @@ function Home() {
   }, []);
   return (
     <>
-      <div className="mt-24 ">
+      <div className="sm:mt-24 ">
         {isLoading ? (
           <Loader />
         ) : (

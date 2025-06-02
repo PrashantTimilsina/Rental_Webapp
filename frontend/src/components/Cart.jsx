@@ -53,7 +53,7 @@ function Cart() {
                 className="p-2 flex flex-col justify-center items-center gap-3.5  sm:text-2xl rounded-sm bg-amber-100 cursor-pointer"
                 onClick={() => navigate(`/description/${data?.rental?._id}`)}
               >
-                <img src={data?.rental?.imageURL} className="" />
+                <img src={data?.rental?.imageURL} />
                 <h1>{data?.rental?.title}</h1>
                 <h1>Address: {data?.rental?.address}</h1>
                 <h1>Rating: {data?.rental?.rating}⭐ / 5</h1>
@@ -63,7 +63,10 @@ function Cart() {
                   </h1>
                   <button
                     className="bg-blue-600 text-white px-8 py-2 cursor-pointer"
-                    onClick={() => deleteCart(data?.rental?._id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteCart(data?.rental?._id);
+                    }}
                   >
                     Remove
                   </button>

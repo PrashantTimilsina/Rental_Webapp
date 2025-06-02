@@ -1,22 +1,7 @@
 import Typewriter from "typewriter-effect";
 
 function FrontPage() {
-  // const navigate = useNavigate();
-  // const { setIsLoggedIn } = useData();
-  // useEffect(() => {
-  //   async function checkAuth() {
-  //     const res = await axios.get(`${baseUrl}/user/checkAuth`, {
-  //       withCredentials: true,
-  //     });
-  //     const data = res?.data;
-  //     if (data?.cookies) {
-  //       navigate("/home");
-  //       setIsLoggedIn(true);
-  //     }
-  //     console.log(data);
-  //   }
-  //   checkAuth();
-  // }, []);
+ 
   return (
     <div className="relative sm:h-[80vh] overflow-hidden text-[#F9FAFB] h-auto">
       <img

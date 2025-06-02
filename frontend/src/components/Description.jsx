@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useData } from "../context/Context";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "./Loader";
 
 function Description() {
   const { fetchDescription, description, isLoading, fetchAddToCart } =
     useData();
+  const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     fetchDescription(id);
@@ -58,12 +59,20 @@ function Description() {
               </div>
             </div>
           )}
-          <button
-            className="text-2xl sm:text-3xl mt-4 p-3 ml-10 bg-purple-600 text-amber-50 px-4 rounded-sm cursor-pointer hover:bg-purple-500 hover:font-semibold"
-            onClick={handleAddToWishList}
-          >
-            Add to Wishlist
-          </button>
+          <div>
+            <button
+              className="text-xl sm:text-3xl mt-14 sm:mt-4 p-3 ml-10 bg-purple-600 text-amber-50 px-4 rounded-sm cursor-pointer hover:bg-purple-500 hover:font-semibold"
+              onClick={handleAddToWishList}
+            >
+              Add to Wishlist
+            </button>
+            <button
+              className="text-xl sm:text-3xl mt-4 p-3 ml-10 bg-blue-600 text-amber-50 px-4 rounded-sm cursor-pointer hover:bg-blue-400 hover:font-semibold"
+              onClick={() => navigate("/chat")}
+            >
+              Contact Landlord
+            </button>
+          </div>
         </div>
       )}
     </>

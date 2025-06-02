@@ -5,10 +5,6 @@ function Cards({ data }) {
   return (
     <>
       <div className="text-2xl  mt-3 p-3 cursor-pointer">
-        {/* <div>
-          <h1 className="font-semibold ml-5">Explore Rental Homes</h1>
-          <hr className="mt-4" />
-        </div> */}
         <div className="mt-12 space-y-10 grid sm:grid-row-1 sm:grid-cols-1 grid-cols-2 gap-7">
           {data.map((data, i) => (
             <div

@@ -35,10 +35,10 @@ function Navbar() {
         withCredentials: true,
       });
       const data = res?.data;
-      if (data?.cookies) {
-        setIsLoggedIn(true);
-        fetchProfile();
-      }
+
+      setIsLoggedIn(true);
+      fetchProfile();
+
       console.log(data);
     }
     checkAuth();

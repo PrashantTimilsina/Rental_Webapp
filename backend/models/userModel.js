@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
       return this.isNew;
     },
   },
+  role: {
+    type: String,
+    default: "user",
+  },
   resetToken: String,
   tokenExpiry: String,
 });

@@ -251,3 +251,15 @@ exports.resetPassword = async (req, res, next) => {
     });
   }
 };
+exports.getAllUsers = async (req, res, next) => {
+  const user = await User.find();
+  if (!user) {
+    return res.status(400).json({
+      message: "No user found",
+    });
+  }
+  res.status(200).json({
+    status: "success",
+    user,
+  });
+};
