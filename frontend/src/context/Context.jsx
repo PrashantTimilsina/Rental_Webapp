@@ -35,6 +35,7 @@ function UserProvider({ children }) {
         withCredentials: true,
       });
       const data = res.data;
+      getCart();
       console.log(data);
       SuccessMsg(data?.message);
     } catch (error) {

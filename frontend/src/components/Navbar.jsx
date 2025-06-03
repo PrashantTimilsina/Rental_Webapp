@@ -11,10 +11,20 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
 
-  const { setIsLoggedIn, isLoggedIn, fetchProfile, profileData } = useData();
+  const {
+    setIsLoggedIn,
+    isLoggedIn,
+    fetchProfile,
+    profileData,
+    cart,
+    getCart,
+  } = useData();
   function toggleNav() {
     setIsOpen((isOpen) => !isOpen);
   }
+  useEffect(() => {
+    getCart();
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -70,7 +80,20 @@ function Navbar() {
         onClick={handleCart}
         className="navbarlink"
       >
-        <h2> Wishlist</h2>
+        <>
+          <h2 className="relative ">
+            {" "}
+            {cart.length > 0 && (
+              <h3 className="absolute flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs sm:-right-4 sm:bottom-4 text-white sm:left-[53px] left-24">
+                {cart.length}
+              </h3>
+            )}
+            Wishlist
+          </h2>
+        </>
+      </Link>
+      <Link to="/filter" className="navbarlink">
+        <h2>Filter</h2>
       </Link>
 
       <Link to={isLoggedIn ? "" : "/login"} className="navbarlink">

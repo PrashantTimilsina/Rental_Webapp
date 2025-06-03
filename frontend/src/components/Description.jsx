@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "./Loader";
 
 function Description() {
-  const { fetchDescription, description, isLoading, fetchAddToCart } =
+  const { fetchDescription, description, isLoading, fetchAddToCart, getCart } =
     useData();
   const navigate = useNavigate();
   const { id } = useParams();

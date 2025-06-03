@@ -14,6 +14,7 @@ import ResetPassword from "./components/ResetPassword";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import ChatBox from "./components/ChatBox";
 import AdminChatBox from "./components/AdminChatBox";
+import Filter from "./components/Filter";
 
 const App = () => {
   const { profileData } = useData();
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/filter" element={<Filter />} />
           <Route path="/description/:id" element={<Description />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/cart" element={<Cart />} />
