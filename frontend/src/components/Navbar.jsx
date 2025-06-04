@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useData } from "../context/Context";
 import axios from "axios";
 import SuccessMsg from "../utils/SuccessMsg";
@@ -52,7 +52,7 @@ function Navbar() {
       console.log(data);
     }
     checkAuth();
-  }, []);
+  }, [isLoggedIn]);
   async function handleLogOut() {
     try {
       const res = await axios.get(`${baseUrl}/user/logout`, {
@@ -71,36 +71,44 @@ function Navbar() {
   }
   const navItems = (
     <>
-      <Link to="/" className="navbarlink">
+      <NavLink to="/" className="touch">
         <h2>Home</h2>
-      </Link>
+      </NavLink>
 
-      <Link
-        to={isLoggedIn && "/cart"}
-        onClick={handleCart}
-        className="navbarlink"
-      >
-        <>
+      {isLoggedIn ? (
+        <NavLink to="/cart" className="touch">
           <h2 className="relative ">
-            {" "}
             {cart.length > 0 && (
-              <h3 className="absolute flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs sm:-right-4 sm:bottom-4 text-white sm:left-[53px] left-24">
+              <span className="absolute flex h-6 w-6 items-center justify-center rounded-full bg-black text-[1.1rem] sm:-right-4 sm:bottom-4 text-white sm:left-[53px] left-24">
                 {cart.length}
-              </h3>
+              </span>
             )}
             Wishlist
           </h2>
-        </>
-      </Link>
-      <Link to="/filter" className="navbarlink">
+        </NavLink>
+      ) : (
+        <button onClick={handleCart} className="flex justify-start touch">
+          <h2>Wishlist</h2>
+        </button>
+      )}
+      <NavLink to="/filter" className="touch">
         <h2>Filter</h2>
-      </Link>
+      </NavLink>
 
-      <Link to={isLoggedIn ? "" : "/login"} className="navbarlink">
-        {isLoggedIn ? <h2 onClick={handleLogOut}>Logout</h2> : <h2>Login</h2>}
-      </Link>
+      {isLoggedIn ? (
+        <button
+          onClick={handleLogOut}
+          className="cursor-pointer flex justify-start touch"
+        >
+          <h2>Logout</h2>
+        </button>
+      ) : (
+        <NavLink to="/login">
+          <h2>Login</h2>
+        </NavLink>
+      )}
 
-      <Link to={isLoggedIn ? "/profile" : "/register"} className="navbarlink">
+      <NavLink to={isLoggedIn ? "/profile" : "/register"} className="touch">
         {isLoggedIn ? (
           <div className="flex items-center gap-4">
             <img
@@ -112,7 +120,7 @@ function Navbar() {
         ) : (
           <h2>Register</h2>
         )}
-      </Link>
+      </NavLink>
     </>
   );
   return (

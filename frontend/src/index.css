@@ -17,8 +17,12 @@ html {
 .btn {
   @apply bg-sky-800   px-9 rounded-sm py-3 text-white cursor-pointer;
 }
-.navbarlink {
+.touch {
   @apply hover:border-b-black hover:border-b-2 hover:pb-2;
+}
+.active {
+  border-bottom: 3px solid orange;
+  padding-bottom: 4px;
 }
 .navbarlink.active {
   color: #0e7490; /* example: Tailwind cyan-600 */
