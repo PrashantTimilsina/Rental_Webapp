@@ -49,7 +49,7 @@ function Navbar() {
       setIsLoggedIn(true);
       fetchProfile();
 
-      console.log(data);
+      // console.log(data);
     }
     checkAuth();
   }, [isLoggedIn]);

@@ -27,7 +27,7 @@ function Profile() {
         withCredentials: true,
       });
       const detail = res.data;
-      console.log(detail);
+      // console.log(detail);
       SuccessMsg(detail?.message);
       setIsLoggedIn(false);
       navigate("/");

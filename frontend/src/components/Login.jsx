@@ -7,7 +7,7 @@ import ErrorMsg from "../utils/ErrorMsg";
 import { useEffect } from "react";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 function Login() {
-  const { setIsLoggedIn, btnText, setBtnText, getProfile } = useData();
+  const { setIsLoggedIn, btnText, setBtnText } = useData();
   const navigate = useNavigate();
   const {
     register,
@@ -30,7 +30,7 @@ function Login() {
         setBtnText(false);
         navigate("/");
       }
-      console.log(detail);
+      // console.log(detail);
     } catch (error) {
       ErrorMsg(error?.response?.data?.message);
     } finally {

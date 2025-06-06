@@ -16,6 +16,7 @@ function UserProvider({ children }) {
     setIsLoading(true);
     const res = await axios.get(`${baseUrl}/rental`);
     const data = res?.data;
+    // console.log(data);
 
     setRentalData(data?.rentals);
     setIsLoading(false);
@@ -24,6 +25,7 @@ function UserProvider({ children }) {
     setIsLoading(true);
     const res = await axios.get(`${baseUrl}/rental/${id}`);
     const data = res.data;
+    console.log(data);
 
     setDescription(data?.rental);
     setIsLoading(false);
@@ -36,7 +38,7 @@ function UserProvider({ children }) {
       });
       const data = res.data;
       getCart();
-      console.log(data);
+      // console.log(data);
       SuccessMsg(data?.message);
     } catch (error) {
       ErrorMsg(error?.response?.data?.message);
@@ -51,7 +53,7 @@ function UserProvider({ children }) {
         withCredentials: true,
       });
       const data = res?.data?.wishList;
-      console.log(data);
+      // console.log(data);
       setCart(data);
     } catch (error) {
       console.error("Failed to fetch cart:", error);
@@ -66,7 +68,7 @@ function UserProvider({ children }) {
         withCredentials: true,
       });
       const data = res.data;
-      console.log(data);
+      // console.log(data);
       setProfileData(data);
     } catch (error) {
       ErrorMsg("Please try again later");

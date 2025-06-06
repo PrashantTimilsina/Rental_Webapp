@@ -14,7 +14,7 @@ function Cart() {
     getCart();
   }, []);
   async function deleteCart(id) {
-    console.log(id);
+    // console.log(id);
     try {
       const res = await axios.delete(`${baseUrl}/wishlist/delete/${id}`, {
         withCredentials: true,

@@ -32,7 +32,7 @@ function Register() {
         SuccessMsg("🎉Account created successfully!");
         navigate("/");
       }
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       ErrorMsg(error?.response?.data?.message);
     } finally {

@@ -1,16 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Cards from "./Cards";
+import { useData } from "../context/Context";
+import Loader from "./Loader";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
 function Filter() {
   const [text, setText] = useState("available");
   const [filterData, setFilterData] = useState([]);
+  const { isLoading, setIsLoading } = useData();
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setIsLoading(true);
         let url = `${baseUrl}/rental?`;
 
         if (text === "available") {
@@ -23,6 +27,8 @@ function Filter() {
         setFilterData(res.data.rentals); // only the rentals array
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -42,11 +48,7 @@ function Filter() {
 
       {/* Example rendering the filtered data */}
       <div className="mt-10">
-        {filterData === 0 ? (
-          <p>No data available</p>
-        ) : (
-          <Cards data={filterData} />
-        )}
+        {isLoading ? <Loader /> : <Cards data={filterData} />}
       </div>
     </div>
   );

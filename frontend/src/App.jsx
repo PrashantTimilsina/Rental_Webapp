@@ -15,6 +15,9 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 import ChatBox from "./components/ChatBox";
 import AdminChatBox from "./components/AdminChatBox";
 import Filter from "./components/Filter";
+import Payment from "./components/payment/Payment";
+import Success from "./components/payment/Success";
+import Failure from "./components/payment/Failure";
 
 const App = () => {
   const { profileData } = useData();
@@ -30,6 +33,7 @@ const App = () => {
             }
           />
           <Route path="/" element={<Home />} />
+
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/filter" element={<Filter />} />
@@ -39,6 +43,9 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/chat" element={<ChatBox />} />
             <Route path="/admin" element={<AdminChatBox />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/failure" element={<Failure />} />
           </Route>
         </Route>
       </Routes>

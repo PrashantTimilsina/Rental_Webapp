@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "./Loader";
 
 function Description() {
-  const { fetchDescription, description, isLoading, fetchAddToCart, getCart } =
+  const { fetchDescription, description, isLoading, fetchAddToCart } =
     useData();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -71,6 +71,15 @@ function Description() {
               onClick={() => navigate("/chat")}
             >
               Contact Landlord
+            </button>
+            <button
+              className="text-xl sm:text-3xl mt-4 p-3 ml-10 bg-orange-600 text-amber-50 px-7 rounded-sm cursor-pointer hover:bg-orange-400 hover:font-semibold"
+              onClick={() =>
+                description?.price &&
+                navigate(`/payment?amount=${description?.price}`)
+              }
+            >
+              Payment
             </button>
           </div>
         </div>

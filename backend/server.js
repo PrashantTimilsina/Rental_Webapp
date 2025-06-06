@@ -5,6 +5,7 @@ const cors = require("cors");
 const userRouter = require("./routes/userRouter");
 const rentalRouter = require("./routes/rentalRoutes");
 const wishRouter = require("./routes/wishRoutes");
+const paymentRouter = require("./routes/paymentRoutes");
 const cookieParser = require("cookie-parser");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -31,6 +32,7 @@ const PORT = process.env.PORT;
 app.use("/user", userRouter);
 app.use("/rental", rentalRouter);
 app.use("/wishlist", wishRouter);
+app.use("/payment", paymentRouter);
 mongoose.connect(DB).then(() => {
   console.log("DB connected");
 });

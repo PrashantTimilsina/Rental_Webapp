@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-// import rental from "./../../public/rental.json";
+
 function Cards({ data }) {
   const navigate = useNavigate();
   return (
