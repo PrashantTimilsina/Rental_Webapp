@@ -40,7 +40,9 @@ function Profile() {
   };
   const onReset = async (data) => {
     try {
-      const res = await axios.post(`${baseUrl}/user/forgotpassword`, data);
+      const res = await axios.post(`${baseUrl}/user/forgotpassword`, data, {
+        withCredentials: true,
+      });
       const detail = res.data;
       SuccessMsg(detail?.message);
     } catch (error) {
