@@ -188,14 +188,16 @@ exports.changePassword = async (req, res, next) => {
   }
 };
 exports.forgotPassword = async (req, res, next) => {
-  const { email } = req.body;
+  const userId = req?.user?._id;
+
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({
         message: "User doesnot exists",
       });
     }
+
     const resetToken = crypto.randomBytes(32).toString("hex");
     const hashedToken = crypto
       .createHash("sha256")
@@ -205,7 +207,7 @@ exports.forgotPassword = async (req, res, next) => {
     user.tokenExpiry = Date.now() + 30 * 60 * 1000;
     user.confirmPassword = user.password;
     await user.save();
-    sendEmail(email, user?.name, resetToken);
+    sendEmail(user?.email, user?.name, resetToken);
     res.status(200).json({
       message: "Email sent ✅",
       resetToken,
