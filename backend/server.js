@@ -7,6 +7,11 @@ const rentalRouter = require("./routes/rentalRoutes");
 const wishRouter = require("./routes/wishRoutes");
 const paymentRouter = require("./routes/paymentRoutes");
 const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const mongoSanitize = require("express-mongo-sanitize");
+
+const hpp = require("hpp");
 const http = require("http");
 const { Server } = require("socket.io");
 const app = express();
@@ -24,9 +29,27 @@ app.use(
     credentials: true,
   })
 );
-// app.use(cors());
+
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({ limit: "10kb" }));
+//prevent from no sql injection
+// Middleware to sanitize only body and params (avoid sanitizing req.query)
+app.use((req, res, next) => {
+  if (req.body) req.body = mongoSanitize.sanitize(req.body);
+  if (req.params) req.params = mongoSanitize.sanitize(req.params);
+  // Do NOT sanitize req.query here to avoid error
+  next();
+});
+
+//reject duplicate query parameter
+app.use(hpp());
+app.use(helmet());
+const limiter = rateLimit({
+  max: 500, // limit each IP to 150 requests
+  windowMs: 60 * 60 * 1000, // per hour
+  message: "Too many requests from this IP, please try again in an hour!",
+});
+app.use(limiter);
 const DB = process.env.CONNECTION;
 const PORT = process.env.PORT;
 app.use("/user", userRouter);

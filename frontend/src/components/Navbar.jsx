@@ -79,7 +79,7 @@ function Navbar() {
         <NavLink to="/cart" className="touch">
           <h2 className="relative ">
             {cart.length > 0 && (
-              <span className="absolute flex h-6 w-6 items-center justify-center rounded-full bg-black text-[1.1rem] sm:-right-4 sm:bottom-4 text-white sm:left-[53px] left-24">
+              <span className="absolute flex h-6 w-6 items-center justify-center rounded-full bg-black text-[1.1rem] sm:-right-4 sm:bottom-4 text-white sm:left-[53px] left-24 ">
                 {cart.length}
               </span>
             )}
@@ -87,7 +87,10 @@ function Navbar() {
           </h2>
         </NavLink>
       ) : (
-        <button onClick={handleCart} className="flex justify-start touch">
+        <button
+          onClick={handleCart}
+          className="flex justify-start touch cursor-pointer"
+        >
           <h2>Wishlist</h2>
         </button>
       )}
