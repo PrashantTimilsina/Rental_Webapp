@@ -1,10 +1,11 @@
 import CryptoJS from "crypto-js";
-import { useSearchParams } from "react-router";
+import { useParams, useSearchParams } from "react-router";
 import { v4 as uuidv4 } from "uuid";
 
 function Payment() {
   const [searchParams] = useSearchParams();
   const amount = Number(searchParams.get("amount"));
+  const { id } = useParams();
 
   const tax_amount = 10;
   const product_service_charge = 0;
@@ -86,7 +87,7 @@ function Payment() {
         <input
           type="hidden"
           name="success_url"
-          value="http://localhost:5173/success"
+          value={`http://localhost:5173/success/${id}`}
           required
           className="w-full border border-gray-300 p-2 rounded"
         />

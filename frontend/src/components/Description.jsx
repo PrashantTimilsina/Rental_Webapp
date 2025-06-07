@@ -76,7 +76,9 @@ function Description() {
               className="text-xl sm:text-3xl mt-4 p-3 ml-10 bg-orange-600 text-amber-50 px-7 rounded-sm cursor-pointer hover:bg-orange-400 hover:font-semibold"
               onClick={() =>
                 description?.price &&
-                navigate(`/payment?amount=${description?.price}`)
+                navigate(
+                  `/payment/${description?._id}?amount=${description?.price}`
+                )
               }
             >
               Payment

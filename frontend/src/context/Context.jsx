@@ -25,7 +25,7 @@ function UserProvider({ children }) {
     setIsLoading(true);
     const res = await axios.get(`${baseUrl}/rental/${id}`);
     const data = res.data;
-    console.log(data);
+    // console.log(data);
 
     setDescription(data?.rental);
     setIsLoading(false);

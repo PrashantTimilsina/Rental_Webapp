@@ -1,19 +1,21 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useSearchParams } from "react-router";
-import { useData } from "../../context/Context";
+import { useParams, useSearchParams } from "react-router";
+
 const baseUrl = import.meta.env.VITE_BASE_URL;
 function Success() {
   const [search] = useSearchParams();
-  // const { description } = useData();
+
   const info = search.get("data");
   const decodedInfo = atob(info);
   const newInfo = JSON.parse(decodedInfo);
-  // console.log(newInfo);
+  const { id } = useParams();
+  const resultStored = { ...newInfo, id };
+
   useEffect(() => {
     async function storePaymentDetails() {
       try {
-        const res = await axios.post(`${baseUrl}/payment`, newInfo, {
+        const res = await axios.post(`${baseUrl}/payment/${id}`, resultStored, {
           withCredentials: true,
         });
         const data = res.data;

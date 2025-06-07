@@ -14,7 +14,7 @@ function ChatBox() {
 
   // Connect to socket and join room
   useEffect(() => {
-    socketRef.current = io("http://localhost:8000");
+    socketRef.current = io(`${baseUrl}`);
     socketRef.current.emit("join_room", room);
 
     socketRef.current.on("receive_message", (data) => {

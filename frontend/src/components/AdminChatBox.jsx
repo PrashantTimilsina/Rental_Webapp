@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
-
+const baseUrl = import.meta.env.VITE_BASE_URL;
 function AdminChatBox() {
   const socketRef = useRef();
   const [users, setUsers] = useState([]);
@@ -13,7 +13,7 @@ function AdminChatBox() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/user"); // Your endpoint
+        const res = await axios.get(`${baseUrl}/user`); // Your endpoint
         setUsers(res?.data?.user);
       } catch (err) {
         console.error("Error fetching users:", err);
@@ -26,7 +26,7 @@ function AdminChatBox() {
   useEffect(() => {
     if (!selectedUser) return;
 
-    socketRef.current = io("http://localhost:8000");
+    socketRef.current = io(`${baseUrl}`);
     socketRef.current.emit("join_room", selectedUser._id);
 
     socketRef.current.on("receive_message", (data) => {
@@ -43,9 +43,7 @@ function AdminChatBox() {
     const fetchMessages = async () => {
       if (!selectedUser) return;
       try {
-        const res = await axios.get(
-          `http://localhost:8000/messages/${selectedUser._id}`
-        );
+        const res = await axios.get(`${baseUrl}/messages/${selectedUser._id}`);
         setMessageList(res.data);
       } catch (err) {
         console.error("Error fetching messages:", err);

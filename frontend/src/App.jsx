@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { useData, UserProvider } from "./context/Context";
+import { useData } from "./context/Context";
 import { ToastContainer } from "react-toastify";
 import Layout from "./Layout";
 import Home from "./Home";
@@ -43,8 +43,8 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/chat" element={<ChatBox />} />
             <Route path="/admin" element={<AdminChatBox />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/success" element={<Success />} />
+            <Route path="/payment/:id" element={<Payment />} />
+            <Route path="/success/:id" element={<Success />} />
             <Route path="/failure" element={<Failure />} />
           </Route>
         </Route>

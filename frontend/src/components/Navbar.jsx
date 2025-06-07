@@ -103,7 +103,7 @@ function Navbar() {
           <h2>Logout</h2>
         </button>
       ) : (
-        <NavLink to="/login">
+        <NavLink to="/login" className="touch">
           <h2>Login</h2>
         </NavLink>
       )}

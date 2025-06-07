@@ -10,7 +10,7 @@ exports.createPayment = async (req, res, next) => {
       transaction_uuid,
     } = req.body;
     const userId = req.user._id;
-    // const rentalId = req.params.id;
+    const rentalId = req.params.id;
     const existing = await Payment.findOne({ user: userId, transaction_uuid });
     if (existing) {
       return res.status(400).json({
@@ -19,7 +19,7 @@ exports.createPayment = async (req, res, next) => {
     }
     const payment = await Payment.create({
       user: userId,
-      // rental: rentalId,
+      rental: rentalId,
       product_code,
       status,
       total_amount,

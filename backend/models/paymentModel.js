@@ -6,10 +6,10 @@ const paymentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    // rental: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Rental",
-    // },
+    rental: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Rental",
+    },
     product_code: String,
     status: String,
     total_amount: String,
