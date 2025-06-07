@@ -64,7 +64,8 @@ function Footer() {
         </div>
 
         <div className="text-center text-sm text-gray-500 mt-10 border-t border-gray-700 pt-6">
-          &copy; {new Date().getFullYear()} YourBrand. All rights reserved.
+          &copy; {new Date().getFullYear()} Prashant's Rental. All rights
+          reserved.
         </div>
       </div>
     </footer>
