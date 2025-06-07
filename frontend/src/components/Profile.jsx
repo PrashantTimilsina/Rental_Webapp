@@ -133,20 +133,13 @@ function Profile() {
 
         {/* Reset Password Section (React Hook Form should handle state externally) */}
         {showResetPassword && (
-          <form className="mt-6 space-y-4" onSubmit={handleSubmit(onReset)}>
-            <input
-              type="email"
-              name="resetEmail"
-              placeholder="Enter your email"
-              className="w-full border rounded p-2"
-              {...register("email", { required: true })}
-            />
-            {errors.email && (
-              <span className="text-red-500 ">Please fill this field</span>
-            )}
+          <form
+            className="mt-6 space-y-4 flex justify-center items-center"
+            onSubmit={handleSubmit(onReset)}
+          >
             <button
               type="submit"
-              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded cursor-pointer"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded cursor-pointer "
             >
               Send Reset Link
             </button>
