@@ -87,14 +87,14 @@ function Payment() {
         <input
           type="hidden"
           name="success_url"
-          value={`http://localhost:5173/success/${id}`}
+          value={`https://rental-frontend-ndxp.onrender.com/success/${id}`}
           required
           className="w-full border border-gray-300 p-2 rounded"
         />
         <input
           type="hidden"
           name="failure_url"
-          value="http://localhost:5173/failure"
+          value="https://rental-frontend-ndxp.onrender.com/failure"
           required
           className="w-full border border-gray-300 p-2 rounded"
         />
