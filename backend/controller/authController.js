@@ -98,7 +98,7 @@ exports.ensureAuthenticated = async (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json({
-      message: "Unauthorized, JWT token is required",
+      message: "Please login to add the rentals",
     });
   }
   try {
