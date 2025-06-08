@@ -41,7 +41,7 @@ function Description() {
                   />
                 ))}
               </div>
-              <div className="grid grid-cols-2 grid-rows-1 font-semibold pl-4 gap-5 text-xl sm:text-2xl mt-6">
+              <div className="grid grid-cols-2 grid-rows-1 font-semibold pl-4 gap-5 text-xl sm:text-3xl mt-6">
                 <h1 className=" mt-6  italic ">
                   Overview: {description?.description}
                 </h1>
