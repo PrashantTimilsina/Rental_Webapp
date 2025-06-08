@@ -11,16 +11,19 @@ const signToken = (id) => {
 const setCookie = (res, token) => {
   return res.cookie("token", token, {
     httpOnly: true,
-    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    path: "/", // ✅ make cookie available across the entire site
+    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
   });
 };
+
 const clearCookie = (res) => {
   return res.clearCookie("token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    path: "/", // ✅ must match the set-cookie path to ensure it clears properly
   });
 };
 exports.signUp = async (req, res, next) => {
