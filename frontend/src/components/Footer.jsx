@@ -8,7 +8,7 @@ function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-20 text-xl">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center md:text-left">
           {/* Brand Info */}
           <div>
             <h2 className="text-2xl font-bold mb-4">RENTAL</h2>
