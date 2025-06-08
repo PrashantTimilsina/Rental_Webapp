@@ -24,24 +24,24 @@ function Description() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="mt-44 ">
+        <div className="mt-40 ">
           {description && (
-            <div className="px-6 sm:text-3xl pl-4 pr-6">
-              <h1 className=" font-semibold p-3 ml-3 italic">
+            <div className="px-6 sm:text-3xl pl-4 pr-6 text-2xl">
+              <h1 className=" font-semibold p-3 ml-3 italic text-3xl">
                 {description?.title}
               </h1>
 
-              <div className="flex w-1/3 gap-7  ml-3 pr-6 mt-5">
+              <div className="flex w-1/3 gap-7  ml-3 pr-6 mt-7">
                 {description?.images?.map((img, i) => (
                   <img
                     src={img}
                     key={i}
                     alt="House image"
-                    className="object-cover"
+                    className="object-cover "
                   />
                 ))}
               </div>
-              <div className="grid grid-cols-2 grid-rows-1 font-semibold pl-4 gap-5">
+              <div className="grid grid-cols-2 grid-rows-1 font-semibold pl-4 gap-5 text-xl sm:text-2xl mt-6">
                 <h1 className=" mt-6  italic ">
                   Overview: {description?.description}
                 </h1>
@@ -59,7 +59,7 @@ function Description() {
               </div>
             </div>
           )}
-          <div>
+          <div className="mt-7">
             <button
               className="text-xl sm:text-3xl mt-14 sm:mt-4 p-3 ml-10 bg-purple-600 text-amber-50 px-4 rounded-sm cursor-pointer hover:bg-purple-500 hover:font-semibold"
               onClick={handleAddToWishList}
